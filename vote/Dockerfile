@@ -4,6 +4,7 @@ FROM python:2.7-alpine
 # Copy SSL proxy certificates to python server so it can perform pip update
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 COPY ssl_proxy_inter.cer /usr/local/share/ca-certificates/ssl_proxy_inter.cer
+RUN update-ca-certificates
 COPY ssl_proxy_root.cer /usr/local/share/ca-certificates/ssl_proxy_root.cer
 RUN update-ca-certificates
 
